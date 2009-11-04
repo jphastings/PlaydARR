@@ -5,12 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "PlaydARR"
+    gem.version = "0.1"
     gem.summary = %Q{Query Playdar from Ruby}
     gem.description = %Q{A Library for querying Playdar from Ruby}
     gem.email = "jphastings@gmail.com"
     gem.homepage = "http://github.com/jphastings/PlaydARR"
     gem.authors = ["JP Hastings-Spital"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_development_dependency "Shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
