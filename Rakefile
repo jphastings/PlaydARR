@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "PlaydARR"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Query Playdar from Ruby}
+    gem.description = %Q{A Library for querying Playdar from Ruby}
     gem.email = "jphastings@gmail.com"
     gem.homepage = "http://github.com/jphastings/PlaydARR"
     gem.authors = ["JP Hastings-Spital"]
