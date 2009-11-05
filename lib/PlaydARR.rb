@@ -54,7 +54,9 @@ module PlaydARR
     include HTTParty
     base_uri "#{Address}:#{Port}/api"
     format :json
-    @@auth = "1c344d17-7291-4899-b1c7-a1ca43c82346"
+    # If you're using the C++ version of Playdar, you should upgrade, but also you'll find you'll need to authenticate
+    # Throw any authorized token in here (you can find them on the playdar web interface) and uncomment the other line below
+    # @@auth = "1c344d17-7291-4899-b1c7-a1ca43c82346"
 
     # Gets the stats of the server. Notably it can be used to find the server version and whether
     # a playdar server is actually running.
@@ -68,7 +70,7 @@ module PlaydARR
       qid = get('',
         :query => {
           :method => "resolve",
-          :auth => @@auth,
+          #:auth => @@auth, # Explained above
           :artist => artist,
           :album => album,
           :track => track

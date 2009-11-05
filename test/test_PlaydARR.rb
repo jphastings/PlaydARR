@@ -1,7 +1,14 @@
 require 'helper'
 
 class TestPlaydarr < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+  context "The Playdar Server" do
+    # We need a playdar server to be running to test!
+    should "be running, and return stats" do
+      assert PlaydARR::Server.stats
+    end
+    
+    should "return some tracks" do
+      assert_equal PlaydARR::Server.search("some artist","some track").is_a? Array
+    end
   end
 end
