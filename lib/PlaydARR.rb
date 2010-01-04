@@ -54,9 +54,6 @@ module PlaydARR
     include HTTParty
     base_uri "#{Address}:#{Port}/api"
     format :json
-    # If you're using the C++ version of Playdar, you should upgrade, but also you'll find you'll need to authenticate
-    # Throw any authorized token in here (you can find them on the playdar web interface) and uncomment the other line below
-    # @@auth = "1c344d17-7291-4899-b1c7-a1ca43c82346"
 
     # Gets the stats of the server. Notably it can be used to find the server version and whether
     # a playdar server is actually running.
@@ -67,22 +64,25 @@ module PlaydARR
     # Search the Playdar database for a particular song
     # Album isn't required, but its suggested!
     def self.search(artist, track, album = "")
-      qid = get('',
-        :query => {
-          :method => "resolve",
-          #:auth => @@auth, # Explained above
-          :artist => artist,
-          :album => album,
-          :track => track
-        }
-      )['qid']
-    
+      # TODO: specify my own QID to speed up the process?
+      begin
+        qid = get('',
+          :query => q = {
+            :method => "resolve",
+            :artist => artist,
+            :album => album,
+            :track => track
+          }
+        )['qid']
+      rescue Crack::ParseError # I think playdar doesn't send a nice response when there's no results?
+        return []
+      end  
+        
       res = nil
       0.upto(6) do
         res = get('',
           :query => {
             :method => "get_results",
-            :auth => @@auth,
             :qid => qid
           }
         )

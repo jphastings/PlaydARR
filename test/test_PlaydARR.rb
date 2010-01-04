@@ -8,7 +8,7 @@ class TestPlaydarr < Test::Unit::TestCase
     end
     
     should "return some tracks" do
-      assert_equal PlaydARR::Server.search("some artist","some track").is_a? Array
+      assert PlaydARR::Server.search("some artist","some track").is_a? Array
     end
   end
 end
